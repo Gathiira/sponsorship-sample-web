@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+  {% block title %} Applicant Registration {% endblock %}
+  {% block content %}
+    <section >
+      <div>
+        <div class="card-header text-black">
+          <h2>Register</h2>
+        </div>
+        <div class="card-body">
+            <form action="{% url 'applicant_register' %}" method="POST" novalidate>
+              {% csrf_token %}
+                  {% for field in form.visible_fields %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                          {% render_field field class="form-control" %}
+                            {% for error in field.errors %}
+                              <span style="color:red">{{ error }}</span>
+                            {% endfor %}
+                  {% endfor %}
+                  <br>
+                      <input type="submit" value="Register" class="btn btn-block btn-primary">
+                    </div>
+            </form>
+        </div>
+      </div>
+      
+    </section>
+{% endblock %}

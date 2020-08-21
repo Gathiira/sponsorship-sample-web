@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %} Application form {% endblock %}
+
+{% block content %}
+{% if applicant.has_applied %}
+    <h2 class="card-title">You have already applied for scholarship </h2>
+{% else %}
+    <h2 class="card-title">Application for Academic sponsorship</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">Apply</button>
+    </form>
+{% endif %}
+{% endblock %}

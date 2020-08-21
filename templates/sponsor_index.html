@@ -1,0 +1,76 @@
+{% extends 'base2.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %} Sponsors {% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header text-black">
+    <h2>Approved Applications</h2>
+  </div>
+  <div class="product-status mg-b-30">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="product-status-wrap">
+                    <table class="content-table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Phone details</th>
+                            <th>Email</th>
+                            <th>School Name</th>
+                            <th>School Address</th>
+                            <th>Academic Level</th>
+                            <th>Completion Year</th>
+                            <th>Reason</th>
+                            <th>Birth Cert</th>
+                            <th>National ID</th>
+                            <th>Recommendation Letter</th>
+                            <th>Status</th>
+                        </tr>
+                        {% for application in applications %}
+                        {% if application.is_approved %}
+                          <tr>
+                              <td>{{ application.name }} </td>
+                              <td>{{ application.address }} </td>
+                              <td>{{ application.phone }}</td>
+                              <td>{{ application.email }}</td>
+                              <td>{{ application.school_name }}</td>
+                              <td>{{ application.school_address }}</td>
+                              <td>{{ application.academic_level }}</td>
+                              <td>{{ application.completion_year }}</td>
+                              <td>{{ application.reason }}</td>
+                              <td>
+                                <a href="{{ application.birth_certificate.url }}" target="_blank"><span>Birth Cert</span></a>
+                              </td>
+                              <td>
+                                <a href="{{ application.national_id.url }}" target="_blank"><span>National ID</span></a>
+                              </td>
+                              <td>
+                                <a href="{{  application.recommendation_letter.url  }}" target="_blank"><span>Recommendation Letter</span></a>
+                              </td>
+                              {% if application.is_sponsored %}
+                              <td>
+                                <button type="submit" class="btn btn-success btn-sm">Sponsored</button>
+                              </td>
+                              {% else %}
+                              <td>
+                                <form method="post" action="{% url 'sponsor_applicant' application.pk %}">
+                                  {% csrf_token %}
+                                  <button type="submit" class="btn btn-danger btn-sm">Sponsor</button>
+                                </form>
+                              </td>
+                              {% endif %}
+                          </tr>
+                          {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

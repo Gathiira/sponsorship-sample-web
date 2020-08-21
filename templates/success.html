@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %} Success {% endblock %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <h2 class="card-title">{{ message }} </h2>
+        {% endfor %}
+    {% else %}
+        <h2 class="card-title">You have already applied for scholarship </h2>
+    {% endif %}
+{% endblock %}
