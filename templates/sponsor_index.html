@@ -5,12 +5,13 @@
 {% block title %} Sponsors {% endblock %}
 
 {% block content %}
-<div class="card">
+<div class="card-body">
   <div class="card-header text-black">
     <h2>Approved Applications</h2>
   </div>
-  <div class="product-status-wrap">
-      <table class="content-table">
+  <div class="table-wrapper-scroll-y">
+    <table class="content-table">
+      <thead>
           <tr>
               <th>Name</th>
               <th>Address</th>
@@ -26,6 +27,8 @@
               <th>Recommendation Letter</th>
               <th>Status</th>
           </tr>
+        </thead>
+        <tbody>
           {% for application in applications %}
           {% if application.is_approved %}
             <tr>
@@ -62,7 +65,8 @@
             </tr>
             {% endif %}
           {% endfor %}
-      </table>
+        </tbody>
+    </table>
   </div>
 </div>
 {% endblock %}
