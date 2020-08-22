@@ -5,67 +5,67 @@
 {% block title %} Staffs {% endblock %}
 
 {% block content %}
-<div class="card">
+<div class="card-body">
   <div class="card-header text-black">
     <h2>Submitted Applications</h2>
   </div>
   <div class="table-wrapper-scroll-y">
-      <table class="content-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Phone details</th>
-            <th>Email</th>
-            <th>School Name</th>
-            <th>School Address</th>
-            <th>Academic Level</th>
-            <th>Completion Year</th>
-            <th>Reason</th>
-            <th>Birth Cert</th>
-            <th>National ID</th>
-            <th>Recommendation Letter</th>
-            <th>Status</th>
-          </tr>
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Phone details</th>
+          <th>Email</th>
+          <th>School Name</th>
+          <th>School Address</th>
+          <th>Academic Level</th>
+          <th>Completion Year</th>
+          <th>Reason</th>
+          <th>Birth Cert</th>
+          <th>National ID</th>
+          <th>Recommendation Letter</th>
+          <th>Status</th>
+        </tr>
 
-        </thead>   
-        <tbody>
-          {% for application in applications %}
-          <tr>
-              <td>{{ application.name }} </td>
-              <td>{{ application.address }} </td>
-              <td>{{ application.phone }}</td>
-              <td>{{ application.email }}</td>
-              <td>{{ application.school_name }}</td>
-              <td>{{ application.school_address }}</td>
-              <td>{{ application.academic_level }}</td>
-              <td>{{ application.completion_year }}</td>
-              <td>{{ application.reason }}</td>
-              <td>
-                <a href="{{ application.birth_certificate.url }}" target="_blank"><span>Birth Cert</span></a>
-              </td>
-              <td>
-                <a href="{{ application.national_id.url }}" target="_blank"><span>National ID</span></a>
-              </td>
-              <td>
-                <a href="{{  application.recommendation_letter.url  }}" target="_blank"><span>Recommendation Letter</span></a>
-              </td>
-              {% if application.is_approved %}
-              <td>
-                <button type="submit" class="btn btn-success btn-sm">Approved</button>
-              </td>
-              {% else %}
-              <td>
-                <form method="post" action="{% url 'approve_applicant' application.pk %}">
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-danger btn-sm">Approve</button>
-                </form>
-              </td>
-              {% endif %}
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+      </thead>   
+      <tbody>
+        {% for application in applications %}
+        <tr>
+            <td>{{ application.name }} </td>
+            <td>{{ application.address }} </td>
+            <td>{{ application.phone }}</td>
+            <td>{{ application.email }}</td>
+            <td>{{ application.school_name }}</td>
+            <td>{{ application.school_address }}</td>
+            <td>{{ application.academic_level }}</td>
+            <td>{{ application.completion_year }}</td>
+            <td>{{ application.reason }}</td>
+            <td>
+              <a href="{{ application.birth_certificate.url }}" target="_blank"><span>Birth Cert</span></a>
+            </td>
+            <td>
+              <a href="{{ application.national_id.url }}" target="_blank"><span>National ID</span></a>
+            </td>
+            <td>
+              <a href="{{  application.recommendation_letter.url  }}" target="_blank"><span>Recommendation Letter</span></a>
+            </td>
+            {% if application.is_approved %}
+            <td>
+              <button type="submit" class="btn btn-success btn-sm">Approved</button>
+            </td>
+            {% else %}
+            <td>
+              <form method="post" action="{% url 'approve_applicant' application.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">Approve</button>
+              </form>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
 {% endblock %}
