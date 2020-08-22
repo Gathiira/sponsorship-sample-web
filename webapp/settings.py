@@ -25,12 +25,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '62mne3w7&!4kx$uhc-b09rsdvlj#elkng^6klvy*=hza7j=1rr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-# DEBUG = True
+# DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['sponsorship-webpage.herokuapp.com',".herokuapp.com"]
+# ALLOWED_HOSTS = ['sponsorship-webpage.herokuapp.com',".herokuapp.com"]
 
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -100,9 +100,9 @@ DATABASES = {
     }
 }
 
-import dj_database_url
+# import dj_database_url
 
-DATABASES['default'] =dj_database_url.config(conn_max_age=600)
+# DATABASES['default'] =dj_database_url.config(conn_max_age=600)
 
 
 # Password validation
