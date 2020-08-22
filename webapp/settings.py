@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import django_heroku
+from decouple import config
 
 import os
 
@@ -22,15 +23,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '62mne3w7&!4kx$uhc-b09rsdvlj#elkng^6klvy*=hza7j=1rr'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-# DEBUG = True
+# DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['sponsorship-webpage.herokuapp.com',".herokuapp.com"]
+# ALLOWED_HOSTS = ['sponsorship-webpage.herokuapp.com',".herokuapp.com"]
 
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -90,19 +91,19 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Web App',
-        'USER':'postgres',
-        'PASSWORD': 'avatar',
-        'HOST': 'localhost',
-        'PORT' : 5432,
+        'ENGINE': config('ENGINE'),
+        'NAME': config('NAME'),
+        'USER': config('USER'),
+        'PASSWORD': config('PASSWORD'),
+        'HOST': config('HOST'),
+        'PORT' : config('PORT'),
 
     }
 }
 
-import dj_database_url
+# import dj_database_url
 
-DATABASES['default'] =dj_database_url.config(conn_max_age=600)
+# DATABASES['default'] =dj_database_url.config(conn_max_age=600)
 
 
 # Password validation
@@ -158,9 +159,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 django_heroku.settings(locals())
 
 #DataFlair
-EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'brijfyucha@gmail.com'
-EMAIL_HOST_PASSWORD = 'janshibrava95'
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
