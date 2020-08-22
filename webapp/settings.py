@@ -96,7 +96,7 @@ DATABASES = {
 
 import dj_database_url
 
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'] = dj_database_url.config(default='postgres://runwlpqrytgrku:6988e0d425b4e29a9c81e45363427807c6d94ab33efa571d3d3e88ac9b26f28e@ec2-54-91-178-234.compute-1.amazonaws.com:5432/d7h2tljhn3c46r'}
 
 
 # Password validation
